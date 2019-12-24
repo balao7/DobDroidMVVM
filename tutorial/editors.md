@@ -99,7 +99,7 @@ Note: there are two behaviours, add and edit.
 
 The activity is responsible for transforming user events into ViewModel changes events. For instance, the user clicks the type button, a dialog is displayed. The user picks a type for the dialog. Next, the ViewModel is notified via the ``notifyChange`` method that the model has changed. Each time ``notifyChange`` is called, the activity is re-rendered, by calling the ``show`` method: 
 
-```
+```kotlin
         typeButton.setOnClickListener {
             ShowDialog.withList(context = this,
                 title = R.string.choose_type,
@@ -120,7 +120,7 @@ The activity is responsible for transforming user events into ViewModel changes 
 
 Another example with a seek bar:
 
-```
+```kotlin
         ratingSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener
         {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean)
@@ -142,7 +142,7 @@ Another example with a seek bar:
 
 Another example with an edit text:
 
-```
+```kotlin
         nameEditText.setOnTextChangedListener { name ->
             viewModel.notifyChange { restaurant ->
                 restaurant.name=name
@@ -152,7 +152,7 @@ Another example with an edit text:
 
 Another example with ActivityResult:
 
-```
+```kotlin
 parentRestaurantButton.setOnClickListener {
     ActivityRouter.startChooseRestaurantActivity(from = this)
     OnActivityResult<OnRestaurantChoosedEvent> { event ->
@@ -167,7 +167,7 @@ IMPORTANT NOTE: Each form input must be binded to ViewModel change events!!!
 
 Also implement events triggered when the ViewModel finishes adding or editing a model, after the save button is pressed:
 
-```
+```kotlin
 @Subscribe
 fun onAdded(event : OnRestaurantAddedEvent)
 {

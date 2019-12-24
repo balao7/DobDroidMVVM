@@ -104,7 +104,7 @@ fun fetchRestaurants(
 </FrameLayout>
 ```
 
-In order to use the cell in a picker list, please extend ``ChooserCellView``. Provide the layout with the layout method and bind the model to the view in setData. Please use ``setOnCellClickListener`` instead of the vanilla ``setOnClickListener`` to the view that can user can click to choose the item. Please see chapter 6 - simple list choosers.  
+In order to use the cell in a picker list, please extend ``ChooserCellView``. Provide the layout with the layout method and bind the model to the view in a method annotated with ``ModelBinder``. Please use ``setOnCellClickListener`` instead of the vanilla ``setOnClickListener`` to the view that can user can click to choose the item. Please see chapter 6 - simple list choosers.  
 
 ```kotlin
 class RestaurantCellView : ChooserCellView<Restaurant>
@@ -114,7 +114,8 @@ class RestaurantCellView : ChooserCellView<Restaurant>
 
     override fun layout() : Int = R.layout.cell_restaurant
 
-    override fun setData(restaurant : Restaurant)
+    @ModelBinder
+    override fun setRestaurant(restaurant : Restaurant)
     {
         nameLabel.text=restaurant.name
 
