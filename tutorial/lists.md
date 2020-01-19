@@ -230,7 +230,7 @@ Sticky header configuration, see [chapter 8 - details screens](https://github.co
 ```kotlin
 open fun hasStickyHeaders() : Boolean = false
 open fun provideStickyHeaderModelClass(position : Int) : Class<*>? = null
-open fun provideStickyHeaderView(position : Int) : HeaderView<*>? = null
+open fun provideStickyHeaderView(position : Int) : StickyHeaderView<*>? = null
 ```
 
 Back to our fragment implementation, I need to configure our list filters:

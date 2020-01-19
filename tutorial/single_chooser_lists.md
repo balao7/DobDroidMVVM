@@ -12,7 +12,8 @@ class RestaurantCellView : ChooserCellView<Restaurant>
 
     override fun layout() : Int = R.layout.cell_restaurant
 
-    override fun setData(restaurant : Restaurant)
+    @ModelBinder
+    fun setRestaurant(restaurant : Restaurant)
     {
         nameLabel.text=restaurant.name
 

@@ -7,7 +7,6 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import ro.dobrescuandrei.mvvm.BaseViewModel
 import ro.dobrescuandrei.mvvm.R
-import ro.dobrescuandrei.mvvm.eventbus.ForegroundEventBus
 import ro.dobrescuandrei.mvvm.utils.NonNullableLiveData
 import ro.dobrescuandrei.mvvm.utils.notify
 

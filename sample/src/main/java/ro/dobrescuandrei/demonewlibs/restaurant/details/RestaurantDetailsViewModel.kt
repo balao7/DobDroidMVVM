@@ -3,8 +3,8 @@ package ro.dobrescuandrei.demonewlibs.restaurant.details
 import io.reactivex.Single
 import ro.dobrescuandrei.demonewlibs.api.GetRestaurantDetailsRequest
 import ro.dobrescuandrei.demonewlibs.model.Restaurant
-import ro.dobrescuandrei.demonewlibs.model.utils.FirstPageHeader
-import ro.dobrescuandrei.demonewlibs.model.utils.SecondPageHeader
+import ro.dobrescuandrei.demonewlibs.model.utils.FirstPageStickyHeader
+import ro.dobrescuandrei.demonewlibs.model.utils.SecondPageStickyHeader
 import ro.dobrescuandrei.mvvm.details.BaseDetailsViewModel
 import ro.dobrescuandrei.utils.yieldListOf
 
@@ -18,12 +18,12 @@ class RestaurantDetailsViewModel : BaseDetailsViewModel<Restaurant>()
                 .map { restaurant ->
                     yieldListOf<Any> {
                         firstPageStickyHeaderIndex=index()
-                        yield(FirstPageHeader())
+                        yield(FirstPageStickyHeader())
                         for (i in 1..10)
                             yield(restaurant)
 
                         secondPageStickyHeaderIndex=index()
-                        yield(SecondPageHeader())
+                        yield(SecondPageStickyHeader())
                         for (i in 1..10)
                             yield(restaurant)
                     }

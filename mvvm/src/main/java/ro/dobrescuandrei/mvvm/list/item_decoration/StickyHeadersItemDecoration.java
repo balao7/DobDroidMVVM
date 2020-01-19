@@ -4,13 +4,14 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 import kotlin.jvm.functions.Function1;
 import ro.andreidobrescu.declarativeadapterkt.BaseDeclarativeAdapter;
-import ro.andreidobrescu.declarativeadapterkt.view.CellView;
-import ro.andreidobrescu.declarativeadapterkt.view.HeaderView;
+import ro.andreidobrescu.declarativeadapterkt.model.ModelBinder;
 import ro.dobrescuandrei.mvvm.list.RecyclerViewMod;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -22,10 +23,10 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class StickyHeadersItemDecoration extends RecyclerViewMod.ItemDecoration
 {
-    private Function1<Integer, HeaderView> headerViewInstantiator;
+    private Function1<Integer, StickyHeaderCustomView> headerViewInstantiator;
     private Function1<Integer, Class> headerModelClassProvider;
 
-    public StickyHeadersItemDecoration(Function1<Integer, HeaderView> headerViewInstantiator, Function1<Integer, Class> headerModelClassProvider) {
+    public StickyHeadersItemDecoration(Function1<Integer, StickyHeaderCustomView> headerViewInstantiator, Function1<Integer, Class> headerModelClassProvider) {
         this.headerViewInstantiator=headerViewInstantiator;
         this.headerModelClassProvider=headerModelClassProvider;
     }
@@ -50,7 +51,7 @@ public class StickyHeadersItemDecoration extends RecyclerViewMod.ItemDecoration
             return;
         }
 
-        HeaderView currentHeader = headerViewInstantiator.invoke(topChildPosition);
+        StickyHeaderCustomView currentHeader = headerViewInstantiator.invoke(topChildPosition);
         Class headerClass = headerModelClassProvider.invoke(topChildPosition);
 
         if (currentHeader==null)
@@ -70,7 +71,22 @@ public class StickyHeadersItemDecoration extends RecyclerViewMod.ItemDecoration
 
         if (headerData!=null)
         {
-            currentHeader.setData(headerData);
+            Method binderMethod=null;
+
+            Method[] methods=currentHeader.getClass().getDeclaredMethods();
+            for (Method method : methods)
+            {
+                Annotation[] annotations=method.getAnnotations();
+                for (Annotation annotation : annotations)
+                    if (annotation instanceof ModelBinder)
+                        binderMethod=method;
+            }
+
+            if (binderMethod!=null)
+            {
+                try { binderMethod.invoke(currentHeader, headerData); }
+                catch (Exception ex) {}
+            }
         }
 
         fixLayoutSize(parent, currentHeader);
@@ -80,7 +96,8 @@ public class StickyHeadersItemDecoration extends RecyclerViewMod.ItemDecoration
             return;
         }
 
-        if (((CellView)childInContact).isSticky()) {
+        if (childInContact instanceof StickyHeaderCustomView)
+        {
             moveHeader(c, currentHeader, childInContact);
             return;
         }

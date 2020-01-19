@@ -9,9 +9,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import ro.andreidobrescu.basefilter.BaseFilter
 import ro.andreidobrescu.declarativeadapterkt.BaseDeclarativeAdapter
-import ro.andreidobrescu.declarativeadapterkt.view.HeaderView
 import ro.dobrescuandrei.mvvm.BaseActivity
 import ro.dobrescuandrei.mvvm.R
+import ro.dobrescuandrei.mvvm.list.item_decoration.StickyHeaderCustomView
 import ro.dobrescuandrei.mvvm.list.item_decoration.StickyHeadersItemDecoration
 import ro.dobrescuandrei.mvvm.navigation.ARG_FILTER
 
@@ -123,7 +123,7 @@ abstract class BaseListActivity<VIEW_MODEL : BaseListViewModel<*, FILTER>, ADAPT
     open fun provideEmptyViewText() : String = getString(R.string.no_items)
     open fun hasStickyHeaders() : Boolean = false
     open fun provideStickyHeaderModelClass(position : Int) : Class<*>? = null
-    open fun provideStickyHeaderView(position : Int) : HeaderView<*>? = null
+    open fun provideStickyHeaderView(position : Int) : StickyHeaderCustomView<*>? = null
 
     override fun onBackPressed()
     {

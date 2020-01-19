@@ -2,16 +2,18 @@ package ro.dobrescuandrei.demonewlibs.restaurant.details.headers
 
 import android.content.Context
 import android.util.AttributeSet
-import ro.andreidobrescu.declarativeadapterkt.view.HeaderView
+import ro.andreidobrescu.declarativeadapterkt.model.ModelBinder
 import ro.dobrescuandrei.demonewlibs.R
-import ro.dobrescuandrei.demonewlibs.model.utils.SecondPageHeader
+import ro.dobrescuandrei.demonewlibs.model.utils.SecondPageStickyHeader
+import ro.dobrescuandrei.mvvm.list.item_decoration.StickyHeaderCustomView
 
-class SecondPageHeaderView : HeaderView<SecondPageHeader>
+class SecondPageStickyHeaderView : StickyHeaderCustomView<SecondPageStickyHeader>
 {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
     override fun layout(): Int = R.layout.header_second_page
 
-    override fun setData(header : SecondPageHeader) {}
+    @ModelBinder
+    fun setHeaderData(header : SecondPageStickyHeader) {}
 }

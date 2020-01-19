@@ -42,6 +42,7 @@ dependencies {
 
     //app compat
     api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
 
     //Google MVVM
     api "androidx.lifecycle:lifecycle-extensions:2.1.0"
@@ -53,26 +54,26 @@ dependencies {
     api 'com.github.andob:ActivityResultEventBus:1.0.8'
 
     //utils
-    api 'com.github.andob:DobDroidMiscUtils:1.2.0'
+    api 'com.github.andob:DobDroidMiscUtils:1.2.1'
 
     //keyboard events
-    api 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.2.0'
+    api 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.3.0'
 
     //locale changer
     api 'com.github.andob:LocaleChanger:0.9.3'
 
     //declarative adapter
-    api 'com.github.andob:DeclarativeAdapter-kt:1.1.0'
+    api 'com.github.andob:DeclarativeAdapter-kt:1.1.2'
 
     //material search view
     api 'com.github.andob:MaterialSearchView:1.4.5'
 
     //rx
-    api 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     //BaseFilter class
-    api 'com.github.andob.ROOM-Dynamic-Dao:basefilter:v1.0.8'
+    api 'com.github.andob.ROOM-Dynamic-Dao:basefilter:v1.1.0'
 
     //bundle args
     api 'com.github.andob.BundleArgs:bundleargs-annotation:2.0.1'

@@ -82,6 +82,8 @@ To configure the sticky headers:
 }
 ```
 
+Note: sticky header views must extend ``StickyHeaderCustomView``.
+
 In the activity router:
 
 ```kotlin

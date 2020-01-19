@@ -3,6 +3,7 @@ package ro.dobrescuandrei.demonewlibs.restaurant.list.cells
 import android.content.Context
 import android.util.AttributeSet
 import kotlinx.android.synthetic.main.cell_restaurant.view.*
+import ro.andreidobrescu.declarativeadapterkt.model.ModelBinder
 import ro.dobrescuandrei.demonewlibs.R
 import ro.dobrescuandrei.demonewlibs.model.Restaurant
 import ro.dobrescuandrei.demonewlibs.restaurant.list.RestaurantListActivity
@@ -16,7 +17,8 @@ class RestaurantCellView : ChooserCellView<Restaurant>
 
     override fun layout() : Int = R.layout.cell_restaurant
 
-    override fun setData(restaurant : Restaurant)
+    @ModelBinder
+    fun setRestaurant(restaurant : Restaurant)
     {
         nameLabel.text=restaurant.name
 

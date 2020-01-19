@@ -2,15 +2,15 @@ package ro.dobrescuandrei.demonewlibs.restaurant.details
 
 import android.os.Bundle
 import ro.andreidobrescu.declarativeadapterkt.DeclarativeAdapter
-import ro.andreidobrescu.declarativeadapterkt.view.HeaderView
 import ro.dobrescuandrei.demonewlibs.R
 import ro.dobrescuandrei.demonewlibs.model.Restaurant
-import ro.dobrescuandrei.demonewlibs.model.utils.FirstPageHeader
-import ro.dobrescuandrei.demonewlibs.model.utils.SecondPageHeader
-import ro.dobrescuandrei.demonewlibs.restaurant.details.headers.FirstPageHeaderView
-import ro.dobrescuandrei.demonewlibs.restaurant.details.headers.SecondPageHeaderView
+import ro.dobrescuandrei.demonewlibs.model.utils.FirstPageStickyHeader
+import ro.dobrescuandrei.demonewlibs.model.utils.SecondPageStickyHeader
+import ro.dobrescuandrei.demonewlibs.restaurant.details.headers.FirstPageStickyHeaderView
+import ro.dobrescuandrei.demonewlibs.restaurant.details.headers.SecondPageStickyHeaderView
 import ro.dobrescuandrei.demonewlibs.restaurant.list.cells.RestaurantCellView
 import ro.dobrescuandrei.mvvm.details.BaseDetailsActivity
+import ro.dobrescuandrei.mvvm.list.item_decoration.StickyHeaderCustomView
 import ro.dobrescuandrei.utils.setupBackIcon
 
 class RestaurantDetailsActivity : BaseDetailsActivity<Restaurant, RestaurantDetailsViewModel, DeclarativeAdapter>()
@@ -33,26 +33,26 @@ class RestaurantDetailsActivity : BaseDetailsActivity<Restaurant, RestaurantDeta
         adapter.whenInstanceOf(Restaurant::class,
                 use = { RestaurantCellView(it) })
             .whenInstanceOf(
-                FirstPageHeader::class,
-                use = { FirstPageHeaderView(it) })
+                FirstPageStickyHeader::class,
+                use = { FirstPageStickyHeaderView(it) })
             .whenInstanceOf(
-                SecondPageHeader::class,
-                use = { SecondPageHeaderView(it) })
+                SecondPageStickyHeader::class,
+                use = { SecondPageStickyHeaderView(it) })
 
         return adapter
     }
 
     override fun provideStickyHeaderModelClass(position: Int): Class<*>? = when
     {
-        position>=viewModel.secondPageStickyHeaderIndex -> SecondPageHeader::class.java
-        position>=viewModel.firstPageStickyHeaderIndex  -> FirstPageHeader::class.java
+        position>=viewModel.secondPageStickyHeaderIndex -> SecondPageStickyHeader::class.java
+        position>=viewModel.firstPageStickyHeaderIndex  -> FirstPageStickyHeader::class.java
         else -> null
     }
 
-    override fun provideStickyHeaderView(position: Int): HeaderView<*>? = when
+    override fun provideStickyHeaderView(position: Int): StickyHeaderCustomView<*>? = when
     {
-        position>=viewModel.secondPageStickyHeaderIndex -> SecondPageHeaderView(this)
-        position>=viewModel.firstPageStickyHeaderIndex  -> FirstPageHeaderView(this)
+        position>=viewModel.secondPageStickyHeaderIndex -> SecondPageStickyHeaderView(this)
+        position>=viewModel.firstPageStickyHeaderIndex  -> FirstPageStickyHeaderView(this)
         else -> null
     }
 }

@@ -24,7 +24,8 @@ class IssueCellView : MultiChooserCellView<Issue>
 
     override fun layout() = R.layout.cell_issue
 
-    override fun setData(issue : Issue)
+    @ModelBinder
+    fun setIssue(issue : Issue)
     {
         nameLabel.text=issue.name
 
