@@ -110,6 +110,9 @@ abstract class BaseFragment<VIEW_MODEL : BaseViewModel> : JBaseFragment<VIEW_MOD
         try { BackgroundEventBus.unregister(this) }
         catch (ex : Exception) {}
 
+        try { ForegroundEventBus.unregister(this) }
+        catch (ex : Exception) {}
+
         toolbar=null
         searchView=null
 

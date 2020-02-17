@@ -172,6 +172,9 @@ abstract class BaseActivity<VIEW_MODEL : BaseViewModel> : JBaseActivity<VIEW_MOD
         try { BackgroundEventBus.unregister(this) }
         catch (ex : Exception) {}
 
+        try { ForegroundEventBus.unregister(this) }
+        catch (ex : Exception) {}
+
         ActivityResultEventBus.onActivityDestroyed(this)
 
         unregistrar?.unregister()
