@@ -30,13 +30,13 @@ class RestaurantDetailsActivity : BaseDetailsActivity<Restaurant, RestaurantDeta
     {
         val adapter=DeclarativeAdapter()
 
-        adapter.whenInstanceOf(Restaurant::class,
+        adapter.whenInstanceOf(Restaurant::class.java,
                 use = { RestaurantCellView(it) })
             .whenInstanceOf(
-                FirstPageStickyHeader::class,
+                FirstPageStickyHeader::class.java,
                 use = { FirstPageStickyHeaderView(it) })
             .whenInstanceOf(
-                SecondPageStickyHeader::class,
+                SecondPageStickyHeader::class.java,
                 use = { SecondPageStickyHeaderView(it) })
 
         return adapter

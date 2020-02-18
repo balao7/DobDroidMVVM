@@ -1,6 +1,6 @@
 package ro.dobrescuandrei.demonewlibs.restaurant.details
 
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import ro.dobrescuandrei.demonewlibs.api.GetRestaurantDetailsRequest
 import ro.dobrescuandrei.demonewlibs.model.Restaurant
 import ro.dobrescuandrei.demonewlibs.model.utils.FirstPageStickyHeader

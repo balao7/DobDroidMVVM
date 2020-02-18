@@ -103,18 +103,12 @@ The activity is responsible for transforming user events into ViewModel changes 
         typeButton.setOnClickListener {
             ShowDialog.withList(context = this,
                 title = R.string.choose_type,
-                onClick = { index, value ->
+                onClick = { index, type ->
                     viewModel.notifyChange { restaurant ->
-                        restaurant.type=when (index)
-                        {
-                            0 -> Restaurant.TYPE_NORMAL
-                            1 -> Restaurant.TYPE_FAST_FOOD
-                        }
+                        restaurant.type=type
                     }
                 },
-                values = listOf(
-                    getString(R.string.normal),
-                    getString(R.string.fast_food)))
+                values = RestaurantType.values().toList())
         }
 ```
 

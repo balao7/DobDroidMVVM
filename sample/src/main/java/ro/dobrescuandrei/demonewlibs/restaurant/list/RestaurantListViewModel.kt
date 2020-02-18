@@ -1,6 +1,6 @@
 package ro.dobrescuandrei.demonewlibs.restaurant.list
 
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import ro.dobrescuandrei.demonewlibs.api.GetRestaurantsRequest
 import ro.dobrescuandrei.demonewlibs.model.Restaurant
 import ro.dobrescuandrei.demonewlibs.model.RestaurantFilter

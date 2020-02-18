@@ -1,8 +1,9 @@
 package ro.dobrescuandrei.demonewlibs.api
 
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import ro.dobrescuandrei.demonewlibs.model.Restaurant
 import ro.dobrescuandrei.demonewlibs.model.RestaurantFilter
+import ro.dobrescuandrei.demonewlibs.model.RestaurantType
 import ro.dobrescuandrei.utils.yieldListOf
 
 class GetRestaurantsRequest
@@ -15,7 +16,7 @@ class GetRestaurantsRequest
         return@fromCallable yieldListOf<Restaurant> {
             if (filter.offset<400)
                 for (i in filter.offset+1..filter.offset+filter.limit)
-                    yield(Restaurant(name = "R$i", rating = 5, type = Restaurant.TYPE_NORMAL))
+                    yield(Restaurant(name = "R$i", rating = 5, type = RestaurantType.Normal))
         }
     }
 }

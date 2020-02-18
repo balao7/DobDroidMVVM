@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_restaurant_editor.*
 import org.greenrobot.eventbus.Subscribe
 import ro.andreidobrescu.activityresulteventbus.OnActivityResult
 import ro.dobrescuandrei.demonewlibs.R
+import ro.dobrescuandrei.demonewlibs.model.RestaurantType
 import ro.dobrescuandrei.demonewlibs.model.utils.OnRestaurantAddedEvent
 import ro.dobrescuandrei.demonewlibs.model.utils.OnRestaurantChoosedEvent
 import ro.dobrescuandrei.demonewlibs.model.utils.OnRestaurantEditedEvent
@@ -28,14 +29,12 @@ class RestaurantEditorActivity : RestaurantEditorAdapter()
         typeButton.setOnClickListener {
             ShowDialog.withList(context = this,
                 title = R.string.choose_type,
-                onClick = { index, value ->
+                onClick = { index, type ->
                     viewModel.notifyChange { restaurant ->
-                        restaurant.type=index+1
+                        restaurant.type=type
                     }
                 },
-                values = listOf(
-                    getString(R.string.normal),
-                    getString(R.string.fast_food)))
+                values = RestaurantType.values().toList())
         }
 
         ratingSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener

@@ -26,7 +26,7 @@ abstract class RestaurantEditorAdapter : BaseEditorActivity<Restaurant, Restaura
         {
             typeErrorLabel.visibility=View.GONE
             typeLabel.visibility=View.VISIBLE
-            typeLabel.text=restaurant.getTypeAsString(resources)
+            typeLabel.text=restaurant.type!!.toString(resources = resources)
         }
 
         ratingSeekBar.progress=restaurant.rating-1

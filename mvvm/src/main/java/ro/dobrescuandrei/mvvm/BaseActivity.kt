@@ -15,10 +15,12 @@ import com.franmontiel.localechanger.LocaleChanger
 import com.michaelflisar.bundlebuilder.BundleArgs
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import net.yslibrary.android.keyboardvisibilityevent.Unregistrar
 import org.greenrobot.eventbus.Subscribe
 import ro.andreidobrescu.activityresulteventbus.ActivityResultEventBus
 import ro.dobrescuandrei.mvvm.eventbus.*
+import ro.dobrescuandrei.mvvm.utils.LoadingView
 import ro.dobrescuandrei.mvvm.utils.getRootMessage
 import ro.dobrescuandrei.utils.Keyboard
 import ro.dobrescuandrei.utils.onCreateOptionsMenu
@@ -28,7 +30,6 @@ abstract class BaseActivity<VIEW_MODEL : BaseViewModel> : JBaseActivity<VIEW_MOD
 {
     var searchView : MaterialSearchView? = null
     private var unregistrar : Unregistrar? = null
-    private var loadingDialog : AlertDialog? = null
 
     abstract fun layout() : Int
     open fun loadDataFromIntent() {}
@@ -84,29 +85,18 @@ abstract class BaseActivity<VIEW_MODEL : BaseViewModel> : JBaseActivity<VIEW_MOD
         try { BackgroundEventBus.register(this) }
         catch (ex : Exception) {}
 
-        unregistrar=KeyboardVisibilityEvent.registerEventListener(this) { isOpen ->
-            if (isOpen)
-            {
-                onKeyboardOpened()
+        unregistrar=KeyboardVisibilityEvent.registerEventListener(this, object : KeyboardVisibilityEventListener {
+            override fun onVisibilityChanged(isOpen : Boolean) {
+                if (isOpen)
+                    onKeyboardOpened()
+                else Handler().postDelayed({ onKeyboardClosed() }, 100)
             }
-            else
-            {
-                onKeyboardClosedImmediate()
-
-                Handler().postDelayed({
-                    onKeyboardClosed()
-                }, 100)
-            }
-        }
+        })
     }
 
     open fun onKeyboardOpened()
     {
         ForegroundEventBus.post(OnKeyboardOpenedEvent())
-    }
-
-    open fun onKeyboardClosedImmediate()
-    {
     }
 
     open fun onKeyboardClosed()
@@ -116,28 +106,8 @@ abstract class BaseActivity<VIEW_MODEL : BaseViewModel> : JBaseActivity<VIEW_MOD
         ForegroundEventBus.post(OnKeyboardClosedEvent())
     }
 
-    fun showLoadingDialog()
-    {
-        if (loadingDialog==null)
-        {
-            val builder=AlertDialog.Builder(this@BaseActivity, R.style.TransparentDialogTheme)
-            builder.setCancelable(false)
-
-            val inflater=LayoutInflater.from(this@BaseActivity)
-            val view=inflater.inflate(R.layout.dialog_progress, null)
-            builder.setView(view)
-
-            loadingDialog=builder.create()
-            loadingDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        }
-
-        loadingDialog?.show()
-    }
-
-    fun hideLoadingDialog()
-    {
-        loadingDialog?.dismiss()
-    }
+    fun showLoadingDialog() = LoadingView.show(context = this)
+    fun hideLoadingDialog() = LoadingView.hide(context = this)
 
     fun showToast(error : String)
     {
@@ -179,9 +149,6 @@ abstract class BaseActivity<VIEW_MODEL : BaseViewModel> : JBaseActivity<VIEW_MOD
 
         unregistrar?.unregister()
         unregistrar=null
-
-        hideLoadingDialog()
-        loadingDialog=null
 
         toolbar=null
         searchView=null

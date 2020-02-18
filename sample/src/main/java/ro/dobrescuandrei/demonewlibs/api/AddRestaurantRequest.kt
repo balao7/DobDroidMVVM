@@ -1,6 +1,6 @@
 package ro.dobrescuandrei.demonewlibs.api
 
-import io.reactivex.Completable
+import io.reactivex.rxjava3.core.Completable
 import ro.dobrescuandrei.demonewlibs.model.Restaurant
 
 class AddRestaurantRequest
