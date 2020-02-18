@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.chibatching.kotpref.Kotpref
 import com.franmontiel.localechanger.LocaleChanger
-import io.reactivex.rxjava3.plugins.RxJavaPlugins
+import io.reactivex.plugins.RxJavaPlugins
 import ro.dobrescuandrei.demonewlibs.model.utils.LANGUAGE_ENGLISH
 import ro.dobrescuandrei.demonewlibs.model.utils.LANGUAGE_ROMANIAN
 import java.util.*

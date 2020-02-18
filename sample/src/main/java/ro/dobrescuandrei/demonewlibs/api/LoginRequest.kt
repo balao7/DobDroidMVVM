@@ -1,6 +1,6 @@
 package ro.dobrescuandrei.demonewlibs.api
 
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 import ro.dobrescuandrei.demonewlibs.model.User
 
 class LoginRequest

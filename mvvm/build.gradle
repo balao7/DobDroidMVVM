@@ -69,8 +69,8 @@ dependencies {
     api 'com.github.andob:MaterialSearchView:1.4.5'
 
     //rx
-    api 'io.reactivex.rxjava3:rxkotlin:3.0.0-RC1'
-    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     //BaseFilter class
     api 'com.github.andob.ROOM-Dynamic-Dao:basefilter:v1.1.4'

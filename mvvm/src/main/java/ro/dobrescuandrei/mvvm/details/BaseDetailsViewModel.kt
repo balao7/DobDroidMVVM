@@ -1,6 +1,6 @@
 package ro.dobrescuandrei.mvvm.details
 
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 import ro.dobrescuandrei.mvvm.list.BaseListViewModel
 import ro.dobrescuandrei.mvvm.utils.DummyFilter
 
