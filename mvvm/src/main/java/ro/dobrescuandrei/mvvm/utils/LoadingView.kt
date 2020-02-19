@@ -1,10 +1,12 @@
 package ro.dobrescuandrei.mvvm.utils
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import ro.dobrescuandrei.mvvm.BaseActivity
 import ro.dobrescuandrei.mvvm.R
+import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicInteger
 
 object LoadingView
@@ -38,8 +40,30 @@ object LoadingView
                 hide(v.context as BaseActivity<*>)
                 return@setOnLongClickListener true
             }
+
+            //if the process takes less than x ms, don't show the loading dialog
+            loadingView.visibility=View.GONE
+
+            val weakContext=WeakReference(context)
+            showLoadingViewAfter(delayInMills = 100, weakContext = weakContext)
         }
     }
+
+    @JvmStatic
+    fun showLoadingViewAfter(weakContext : WeakReference<BaseActivity<*>>?, delayInMills : Int)
+    {
+        Handler().postDelayed({
+            if (weakContext?.get()!=null)
+            {
+                val loadingView=findLoadingView(weakContext.get()!!)
+                if (loadingView!=null&&loadingView.visibility==View.GONE)
+                    loadingView.visibility=View.VISIBLE
+            }
+        }, delayInMills.toLong())
+    }
+
+    @JvmStatic
+    fun isVisible(context : BaseActivity<*>) = findLoadingView(context)!=null
 
     @JvmStatic
     fun hide(context : BaseActivity<*>)

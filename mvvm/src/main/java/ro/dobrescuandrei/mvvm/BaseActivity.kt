@@ -156,6 +156,12 @@ abstract class BaseActivity<VIEW_MODEL : BaseViewModel> : JBaseActivity<VIEW_MOD
         super.onDestroy()
     }
 
+    override fun onBackPressed()
+    {
+        if (!LoadingView.isVisible(context = this))
+            finish()
+    }
+
     override fun finish()
     {
         Keyboard.close(this)
