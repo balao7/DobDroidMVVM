@@ -51,21 +51,21 @@ abstract class BaseFragmentsContainerActivity<MODEL> : BaseContainerActivity<MOD
 
     override fun layout() : Int = R.layout.activity_fragments_container
 
-    fun adapter() : SimpleFragmentPagerAdapter = viewPager.adapter as SimpleFragmentPagerAdapter
+    val adapter get() = viewPager.adapter as SimpleFragmentPagerAdapter
 
     override fun onBackPressed()
     {
-        if (adapter().shouldFinishActivityOnBackPressed(currentTab = viewPager.currentItem))
+        if (adapter.shouldFinishActivityOnBackPressed(currentTab = viewPager.currentItem))
             super.onBackPressed()
     }
 
     override fun onCreateOptionsMenuForFragments(menu: Menu)
     {
-        adapter().onCreateOptionsMenu(menu, menuInflater)
+        adapter.onCreateOptionsMenu(menu, menuInflater)
     }
 
     override fun onOptionsItemSelectedForFragments(item: MenuItem)
     {
-        adapter().onOptionsItemSelected(item, currentTab = viewPager.currentItem)
+        adapter.onOptionsItemSelected(item, currentTab = viewPager.currentItem)
     }
 }

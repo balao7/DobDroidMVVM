@@ -63,7 +63,7 @@ dependencies {
     api 'com.github.andob:LocaleChanger:0.9.3'
 
     //declarative adapter
-    api 'com.github.andob:DeclarativeAdapter-kt:1.2.0'
+    api 'com.github.andob:DeclarativeAdapter-kt:1.2.1'
 
     //material search view
     api 'com.github.andob:MaterialSearchView:1.4.5'
@@ -76,5 +76,5 @@ dependencies {
     api 'com.github.andob.ROOM-Dynamic-Dao:basefilter:v1.1.4'
 
     //bundle args
-    api 'com.github.andob.BundleArgs:bundleargs-annotation:2.0.1'
+    api 'com.github.andob.BundleArgs:bundleargs-annotation:2.0.2'
 }

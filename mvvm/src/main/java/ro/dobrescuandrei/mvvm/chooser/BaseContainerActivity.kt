@@ -15,4 +15,9 @@ abstract class BaseContainerActivity<MODEL> : BaseActivity.WithoutViewModel()
     open fun onItemChoosed(item : MODEL)
     {
     }
+
+    fun chooseItem(item : MODEL)
+    {
+        onItemChoosed(item)
+    }
 }

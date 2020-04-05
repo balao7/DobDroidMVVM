@@ -25,10 +25,4 @@ abstract class ChooserCellView<MODEL> : CellView<MODEL>
             }
         }
     }
-
-    fun chooseMode() : Boolean
-    {
-        val activity=context as? BaseContainerActivity<*>
-        return activity?.chooseMode?:false
-    }
 }

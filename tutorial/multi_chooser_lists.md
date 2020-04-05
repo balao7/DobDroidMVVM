@@ -52,7 +52,7 @@ class IssueListActivity : BaseMultichooseListActivity<IssueListFragment, Issue>(
     @Subscribe
     fun onIssueAdded(event : OnIssueAddedEvent)
     {
-        super.onItemAdded(event.issue)
+        chooseItems(listOf(event.issue))
     }
 }
 ```

@@ -22,6 +22,7 @@ abstract class BaseFragment<VIEW_MODEL : BaseViewModel> : JBaseFragment<VIEW_MOD
     var searchView : MaterialSearchView? = null
 
     abstract fun layout() : Int
+
     open fun loadDataFromArguments() {}
 
     fun viewModel() = ViewModelProviders.of(this)[viewModelClass()]
@@ -33,7 +34,7 @@ abstract class BaseFragment<VIEW_MODEL : BaseViewModel> : JBaseFragment<VIEW_MOD
 
     fun <T : Any> LiveData<T>.observe(observer : (T) -> (Unit))
     {
-        observe(this@BaseFragment, Observer<T?> { value ->
+        observe(viewLifecycleOwner, Observer<T?> { value ->
             if (value!=null)
                 observer(value)
         })

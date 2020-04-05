@@ -2,7 +2,7 @@ package ro.dobrescuandrei.mvvm;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 public abstract class JBaseActivity<VIEW_MODEL extends BaseViewModel> extends AppCompatActivity
 {
@@ -12,7 +12,7 @@ public abstract class JBaseActivity<VIEW_MODEL extends BaseViewModel> extends Ap
 
     public VIEW_MODEL getViewModel()
     {
-        return ViewModelProviders.of(this).get(viewModelClass());
+        return new ViewModelProvider(this).get(viewModelClass());
     }
 
     public Toolbar getToolbar()

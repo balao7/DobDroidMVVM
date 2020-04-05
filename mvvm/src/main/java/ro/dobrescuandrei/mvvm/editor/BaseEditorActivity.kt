@@ -16,9 +16,9 @@ abstract class BaseEditorActivity<MODEL : Any, VIEW_MODEL : BaseEditorViewModel<
         val model=intent?.getSerializableExtra(ARG_MODEL) as? MODEL
         if (model!=null) viewModel.modelLiveData.value=model
 
-        viewModel.addMode=intent?.getBooleanExtra(ARG_ADD_MODE, true)?:true
+        viewModel._addMode=intent?.getBooleanExtra(ARG_ADD_MODE, true)?:true
 
-        if (viewModel.addMode)
+        if (viewModel._addMode)
             onCreateForAdd(model)
         else onCreateForEdit(model!!)
     }

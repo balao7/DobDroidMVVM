@@ -25,6 +25,6 @@ class RestaurantPagedListActivity : BaseFragmentsContainerActivity<Restaurant>()
     @Subscribe
     fun onRestaurantAdded(event : OnRestaurantAddedEvent)
     {
-        onItemChoosed(event.restaurant)
+        chooseItem(event.restaurant)
     }
 }

@@ -30,9 +30,12 @@ abstract class BaseMultichooseListActivity<FRAGMENT : BaseFragment<*>, MODEL : I
 
     abstract fun onItemsChoosed(items : List<MODEL>)
 
-    fun onItemAdded(item : MODEL)
+    fun chooseItems(items : List<MODEL>)
     {
+        //choose items already selected by the user from the list
         findViewById<View>(R.id.saveButton).performClick()
-        onItemsChoosed(listOf(item))
+
+        //choose programatically selected items
+        onItemsChoosed(items)
     }
 }

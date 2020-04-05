@@ -90,9 +90,10 @@ class RestaurantEditorActivity : RestaurantEditorAdapter()
         super.onCreate(savedInstanceState)
 
         toolbar.setupBackIcon()
-        toolbar.setTitle(if (viewModel.addMode())
-            R.string.add_restaurant
-        else R.string.edit_restaurant)
+        toolbar.setTitle(
+            if (viewModel.addMode)
+                getString(R.string.add_restaurant)
+            else getString(R.string.edit_restaurant))
 ```
 
 Note: there are two behaviours, add and edit.
@@ -184,7 +185,7 @@ In this sample, I also used a ``OnRestaurantAddedEvent`` event. This event is ca
 fun onRestaurantAdded(event : OnRestaurantAddedEvent)
 {
     if (chooseMode)
-        onItemChoosed(event.restaurant)
+        chooseItem(event.restaurant)
 }
 ```
 

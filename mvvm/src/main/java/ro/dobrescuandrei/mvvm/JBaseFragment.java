@@ -2,7 +2,7 @@ package ro.dobrescuandrei.mvvm;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 public abstract class JBaseFragment<VIEW_MODEL extends BaseViewModel> extends Fragment
 {
@@ -12,7 +12,7 @@ public abstract class JBaseFragment<VIEW_MODEL extends BaseViewModel> extends Fr
 
     public VIEW_MODEL getViewModel()
     {
-        return ViewModelProviders.of(this).get(viewModelClass());
+        return new ViewModelProvider(this).get(viewModelClass());
     }
 
     public Toolbar getToolbar()

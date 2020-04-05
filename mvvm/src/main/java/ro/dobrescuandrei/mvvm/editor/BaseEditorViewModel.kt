@@ -20,16 +20,18 @@ abstract class BaseEditorViewModel<MODEL : Any> : BaseViewModel
         this.modelLiveData=NonNullableLiveData(initialValue = model)
     }
 
+    @JvmField
     @PublishedApi
     internal var shouldNotifyModelLiveDataOnPropertyChange : Boolean = true
 
+    @JvmField
     @PublishedApi
-    internal var addMode : Boolean = true
+    internal var _addMode : Boolean = true
 
     var isValid : Boolean = false
 
-    open fun  addMode() = addMode
-    open fun editMode() = !addMode
+    open val  addMode get() = _addMode
+    open val editMode get() = !_addMode
 
     abstract fun add (model : MODEL) : Completable
     abstract fun edit(model : MODEL) : Completable
@@ -60,7 +62,7 @@ abstract class BaseEditorViewModel<MODEL : Any> : BaseViewModel
         {
             showLoading()
 
-            (if (addMode())
+            (if (addMode)
                 add(modelLiveData.value)
             else edit(modelLiveData.value))
                 .subscribeOn(Schedulers.io())
@@ -72,7 +74,7 @@ abstract class BaseEditorViewModel<MODEL : Any> : BaseViewModel
                 }, onComplete = {
                     hideLoading()
 
-                    if (addMode())
+                    if (addMode)
                         onAdded(modelLiveData.value)
                     else onEdited(modelLiveData.value)
                 })

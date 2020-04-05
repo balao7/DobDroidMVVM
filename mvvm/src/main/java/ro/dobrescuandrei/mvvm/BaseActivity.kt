@@ -3,12 +3,9 @@ package ro.dobrescuandrei.mvvm
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.Window
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.franmontiel.localechanger.LocaleChanger
@@ -29,9 +26,11 @@ import ro.dobrescuandrei.utils.onOptionsItemSelected
 abstract class BaseActivity<VIEW_MODEL : BaseViewModel> : JBaseActivity<VIEW_MODEL>()
 {
     var searchView : MaterialSearchView? = null
+
     private var unregistrar : Unregistrar? = null
 
     abstract fun layout() : Int
+
     open fun loadDataFromIntent() {}
 
     fun <T : Any?> LiveData<T>.observeNullable(observer : (T?) -> (Unit))
