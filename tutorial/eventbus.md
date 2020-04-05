@@ -23,12 +23,12 @@ class ExitAppCommand
 1. Foreground events via GreenRobot EventBus. These events are sent only to the Activities / Fragments that are currently in the foreground / visible to the user. For instance:
 
 ```kotlin
-ForegroundEventBus.post(OnRestaurantChoosedEvent(restaurant))
+ForegroundEventBus.post(CloseRestaurantListActivityCommand(restaurant))
 ``` 
 
 ```kotlin
 @Subscribe
-fun onRestaurantChoosed(event : OnRestaurantChoosedEvent) {}
+fun finish(command : CloseRestaurantListActivityCommand) = finish()
 ```
 
 2. Background events via GreenRobot EventBus. These events are sent to all running activities and fragments:
@@ -49,7 +49,7 @@ If we have two restaurant list activities running in the background, both activi
 ```kotlin
 override fun onItemChoosed(restaurant : Restaurant)
 {
-    BackgroundEventBus.post(OnRestaurantChoosedEvent(restaurant))
+    ActivityResultEventBus.post(OnRestaurantChoosedEvent(restaurant))
     finish()
 }
 ```

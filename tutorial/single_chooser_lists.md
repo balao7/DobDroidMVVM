@@ -39,7 +39,7 @@ In your list container activity:
 ```kotlin
 override fun onItemChoosed(restaurant : Restaurant)
 {
-    BackgroundEventBus.post(OnRestaurantChoosedEvent(restaurant))
+    ActivityResultEventBus.post(OnRestaurantChoosedEvent(restaurant))
     finish()
 }
 ```

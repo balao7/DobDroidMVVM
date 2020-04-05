@@ -45,7 +45,7 @@ class IssueListActivity : BaseMultichooseListActivity<IssueListFragment, Issue>(
 
     override fun onItemsChoosed(issues : List<Issue>)
     {
-        BackgroundEventBus.post(OnIssuesChoosedEvent(issues))
+        ActivityResultEventBus.post(OnIssuesChoosedEvent(issues))
         finish()
     }
 
