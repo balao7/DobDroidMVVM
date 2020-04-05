@@ -14,6 +14,7 @@ import ro.andreidobrescu.basefilter.BaseFilter
 import ro.andreidobrescu.declarativeadapterkt.BaseDeclarativeAdapter
 import ro.dobrescuandrei.mvvm.BaseFragment
 import ro.dobrescuandrei.mvvm.R
+import ro.dobrescuandrei.mvvm.chooser.BaseContainerActivity
 import ro.dobrescuandrei.mvvm.eventbus.OnKeyboardClosedEvent
 import ro.dobrescuandrei.mvvm.eventbus.OnKeyboardOpenedEvent
 import ro.dobrescuandrei.mvvm.list.item_decoration.StickyHeaderCustomView
@@ -179,5 +180,11 @@ abstract class BaseListFragment<VIEW_MODEL : BaseListViewModel<*, FILTER>, ADAPT
 
     open fun onAddButtonClicked()
     {
+    }
+
+    fun chooseMode() : Boolean
+    {
+        val activity=context as? BaseContainerActivity<*>
+        return activity?.chooseMode?:false
     }
 }
